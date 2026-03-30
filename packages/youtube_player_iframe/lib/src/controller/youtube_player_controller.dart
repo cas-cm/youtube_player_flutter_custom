@@ -283,6 +283,7 @@ class YoutubePlayerController implements YoutubePlayerIFrameAPI {
     String functionName, {
     Map<String, dynamic>? data,
   }) async {
+    print(data);
     await _initCompleter.future;
 
     final varArgs = await _prepareData(data);
