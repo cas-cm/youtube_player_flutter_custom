@@ -322,6 +322,14 @@ class YoutubePlayerController implements YoutubePlayerIFrameAPI {
 
   Future<String> _prepareData(Map<String, dynamic>? data) async {
     await _eventHandler.isReady;
+    
+    if (data != null && data.containsKey('videoId')) {
+      final String rawId = data['videoId'];
+      // If it's not already quoted, wrap it in single quotes
+      if (!rawId.startsWith("'") && !rawId.startsWith('"')) {
+        data['videoId'] = "'$rawId'";
+      }
+    }
     return data == null ? '' : jsonEncode(data);
   }
 
